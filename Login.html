@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <title>LOGIN</title>
+    <meta charset="utf-8">
+    <!--CSS-->
+    <style type="text/css" media="screen">
+    body {
+        margin: 0;
+        padding: 0;
+        background: #34495e;
+        font-family: sans-serif;
+    }
+
+    .box {
+        width: 400px;
+        padding: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #191919;
+        text-align: center;
+    }
+
+    .box h1 {
+        color: white;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .box input[type="text"],
+    .box input[type="password"] {
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #3498db;
+        padding: 14px 10px;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25s;
+
+    }
+
+    .box input[type="text"]:focus,
+    .box input[type="password"]:focus {
+        width: 280px;
+        border-color: #2ecc71;
+    }
+
+    .box button[type="button"] {
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #2ecc71;
+        padding: 14px 40px;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25s;
+        cursor: pointer;
+    }
+
+    .box button[type="button"]:hover {
+        background: #2ecc71;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <form class="box" name="loginform">
+        <h1>Login</h1>
+        <input type="text" name="uname" id="username" placeholder="Username" value="">
+        <input type="password" name="pwd" id="password" placeholder="Password" value="">
+        <button type="button" onclick="validation(this.form)">Submit</button>
+    </form>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="messageTextBox">Some text in the Modal..</p>
+        </div>
+    </div>
+    <!--Java Script-->
+    <script type="text/javascript">
+    function validation(form) {
+
+        var modal = document.getElementById('myModal');
+
+        var username = form.username.value;
+        var password = form.password.value;
+
+        if (username == "" || password == "") {
+            //alert("both fields should not be blank");
+            document.getElementById('messageTextBox').innerHTML = "both fields should not be blank";
+            modal.style.display = "block";
+
+        } else if (password.length < 6 || password.length > 12) {
+            document.getElementById('messageTextBox').innerHTML = "password must be 6 to 12 characters";
+            modal.style.display = "block";
+        } else if (username == "Admin" && password == "123456") {
+            //alert("Login successfully");
+            window.open("Home.html"); // Redirecting to other page.
+        } else {
+            document.getElementById('messageTextBox').innerHTML = "Username or Password is wrong.";
+            modal.style.display = "block";
+        }
+
+
+        var span = document.getElementsByClassName("close")[0];
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+    }
+    </script>
+</body>
+
+</html>
